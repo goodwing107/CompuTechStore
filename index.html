@@ -61,6 +61,101 @@
                 <h2>Horarios</h2>
                 <p>lunes a sabado, de 8:30 a12:30 y de 14:00 a 19:30</p>
             </section>
+            <table>
+                <caption> precios por producto y disponibilidad</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Disponible</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tarjeta madre</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Procesadores</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Memorias RAM</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Refrigeracion</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Tarjeta Grafica</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Fuente de Alimentación</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr><td>Monitores</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                </tbody>
+            </table>
+            <figure>
+                <img src="vitrina.jfif"
+                     alt="vitrina con  hardware de computadoras"
+                     width="600" height="400">
+                <figcaption>la vitrina a la primera hora de la mañana.</figcaption>
+            </figure>
+        </section>
+
+        <section id="pedido">
+        <h2>Hacer un pedido</h2>
+
+        <form action="/pedido" method="post">
+
+          <fieldset>
+            <legend>Tus datos</legend>
+
+            <p>
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre"
+                     autocomplete="name" required>
+            </p>
+
+            <p>
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email"
+                     autocomplete="email" required>
+            </p>
+
+            <p>
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono"
+                     autocomplete="tel" pattern="[0-9]{7,8}"
+                     title="7 u 8 dígitos, sin espacios">
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>Tu pedido</legend>
+
+            <p>
+              <label for="producto">Producto</label>
+
+              <select id="producto" name="producto" required>
+                <option value="">Elige uno</option>
+                <option value="dia">Pan del día</option>
+                <option value="integral">Pan integral</option>
+                <option value="molde">Pan de molde</option>
+              </select>
+            </p>
+
+            <p>
+              <label for="cantidad">Cantidad</label>
+              <input type="number" id="cantidad" name="cantidad"
+                     min="1" max="100" value="1" required>
+            </p>
+
+            <p>
+              <label for="fecha">Fecha de entrega</label>
+              <input type="date" id="fecha" name="fecha" required>
+            </p>
+
+            <p>
+              <label for="notas">Alguna indicación</label>
+              <textarea id="notas" name="notas" rows="3"></textarea>
+            </p>
+
+            <p>
+
+              <input type="checkbox" id="terminos" name="terminos" required>
+              <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
+            </p>
+          </fieldset>
+
+          <button type="submit">Enviar pedido</button>
+        </form>
+        </section>
+
         </main>
         <aside>
             <h2>¿Sabias?</h2>
@@ -69,7 +164,7 @@
         <footer id="contacto">
             <h2>Contacto</h2>
             <address>
-                Av. La Paz a medi cuadra de la plaza principal<br>
+                Av. La Paz a media cuadra de la plaza principal<br>
                 Telefono: 71265247
             </address>
             <p><small>&copy; 2026 CompuTechStore</small></p>
