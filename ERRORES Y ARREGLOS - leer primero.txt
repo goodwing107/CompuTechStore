@@ -1,0 +1,66 @@
+ERRORES Y ARREGLOS DE TU PROYECTO: CompuTechStore (21 de octubre)
+====================================================================
+
+Ludwing_Calani_1 es tu proyecto con todo arreglado. Tu carpeta original no se tocó.
+Ábrela con live-server y revisa cada cambio antes de hacer tu commit. La guía "Depurar el render"
+explica cada uno de estos errores.
+
+1. LAS TARJETAS BORRABAN TU SECCIÓN
+-----------------------------------
+- render.js escribía en "#productos", que es TODA la sección. Como render empieza vaciando el
+  contenedor (innerHTML = ""), se borraban tu título "Nuestros productos" y tu foto, y solo
+  quedaban las tarjetas.
+  -> Dentro de la sección hay un <div id="lista-productos">, y render.js escribe ahí. Los 8
+     <article> escritos a mano se quitaron: ahora las tarjetas salen de datos.js.
+
+2. LA TABLA DE PRECIOS
+----------------------
+- Cada fila cerraba antes de tiempo:  <tr><td>Tarjeta madre</td></tr> <td>Bs 7000</td>...</td></tr>
+  El precio y la disponibilidad quedaban fuera de la fila. -> <tr><td>..</td> <td>..</td> <td>..</td></tr>
+- La tabla y la foto de la vitrina estaban fuera de las secciones, y sobraba un </section>.
+  -> Van dentro de Horarios, que ahora tiene id="horarios".
+
+3. EL HTML
+----------
+- <p>tienda de hardware</p>s: una "s" suelta después de la etiqueta.
+- <link rel="stylesheet"href=...>: faltaba un espacio entre los atributos.
+- El menú: "#Productos", "#Horarios" y "#Contacto" no coincidían con los id (en minúsculas o sin
+  id), y "#Cotizador" y "#Como llegar" no existían (y un id no puede tener espacios).
+  -> Productos, Horarios, y "Contacto y cómo llegar", que lleva a tu footer con la dirección.
+- Los títulos de los productos eran <h2> dentro de la sección: van un nivel abajo, <h3>.
+  (Ahora los pone render.js.)
+- target="_blanck" -> "_blank". "Faceboook" -> Facebook. Tildes: sábado, días, fábrica, Teléfono.
+- El aviso de stock de app.js borraba tu eslogan. -> Ahora va en <p id="aviso-stock">.
+
+4. EL CSS
+---------
+- --color-acento (los precios) era un celeste claro: sobre blanco, contraste 1,4 (para texto hace
+  falta 4,5 o más). -> El mismo tono, oscuro: #0a6c74 (6,2).
+
+5. LOS DATOS
+------------
+- Nombres bien escritos: "refirgeracion" -> Refrigeración, "targeta" -> tarjeta, "GAMINNG" ->
+  Gaming, "1060 6gb GDDR" -> GTX 1060 6 GB, mayúsculas.
+- Quedaban datos de la demo de la panadería ("Pan del día", "Pan de ayer", "Alfajor").
+- funciones.js: panesVendidos -> equiposVendidos.
+
+6. NOMBRES DE ARCHIVO
+---------------------
+- vitrina.jfif y mostrador.jfif -> .jpg (.jfif es un JPEG, pero no todos los servidores lo
+  reconocen). Captura-de-pantalla.png -> captura-escritorio.png, también en tu README.
+
+7. LO QUE TE TOCA A TI
+----------------------
+- En la tabla TODOS los productos dicen "Bs 7000". Pon los precios reales (en datos.js tienes,
+  por ejemplo, la tarjeta madre a Bs 1600 y el procesador a Bs 3000).
+- Los Monitores están en la tabla pero no en datos.js.
+
+GIT: ESTA CARPETA NO TIENE .git
+-------------------------------
+Tu carpeta .git no llegó en el Drive. No crees otro repositorio: copia estos archivos encima de
+tu carpeta del proyecto que tiene tus commits (Reemplazar), y ahí:
+
+    git add .
+    git commit -m "fix: las tarjetas se generan sin borrar la seccion"
+
+Si de verdad no tienes otra carpeta con .git, avisa al docente: ahí sí se hace git init.

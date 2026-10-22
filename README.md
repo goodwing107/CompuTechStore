@@ -7,7 +7,7 @@
 ## Qué resuelve
 [2-3 frases: qué problema tiene tu cliente y cómo lo ayuda este sitio]
 [
-1. Tenenr que buscar los productos para poder mostrar el producto que el cliente desea
+1. Tener que buscar los productos para poder mostrar el producto que el cliente desea
 2. Antes tenia que cotizar el precio de forma manual
 3. No se podía hacer pedidos de productos
 4. Tamíen ahora puede llegar a muchas personas mediante la página]
@@ -23,8 +23,10 @@ grid para el manejo de dos dimenciones al mmismo tiempo
 
 Usé colores en combinacion colores con verde pra hacer llamativo a la pagina como verde como color principal de las letras principales como el nombre de la de la paginay el fondo un verde mas claro para que resalte las ltreas de lapágina
 
+
+
 ## Capturas
-![Escritorio](Captura-de-pantalla.png)
+![Escritorio](captura-escritorio.png)
 ![Móvil 375px](ruta/a/captura-movil.png) DESPUES, PROXIMA SEMANA
 
 ## Lo más difícil
@@ -36,4 +38,31 @@ lo mas dificil fue centrear se resolvió con justify-content space -between
 
 Las imagenes que agregué despues no se podia ajustar el tamaño que yo queria,aun no lo resolví
 
-agregar un enlave de facebook lo resolví ><a href>
+agregar un enlave de facebook lo resolví ><a hrefs>
+
+## LABORATORIO 2
+
+- **JavaScript y Modularización:**
+  - `datos.js`: Almacena la estructura de datos principal de la tienda con un arreglo de objetos `productos` (nombre, precio, categoría, stock y disponibilidad).
+  - `funciones.js`: Prácticas de funciones declaradas, funciones flecha (arrow functions), cálculos de totales, descuentos, impuestos y closures.
+  - `render.js`: Manipulación dinámica del DOM; se encarga de crear cada tarjeta con `crearTarjeta()` e insertarlas en `<div id="lista-productos">` mediante `render(lista)` sin sobreescribir el resto de la sección.
+  - `app.js`: Manejo de constantes, variables, tipos de datos y actualización dinámica del mensaje de stock en `#aviso-stock`.
+  - `eventos.js`: Gestión de eventos e interactividad:
+    - Búsqueda en tiempo real mediante el evento `input` en `#buscador`.
+    - Filtrado por categorías mediante delegación de eventos `click` en `#filtros`, actualizando visualmente la clase `.activo`.
+    - Validación y control del formulario con el evento `submit`, cancelando el reinicio no deseado con `event.preventDefault()` y validando fechas.
+    - Actualización del contador dinámico `#resultado`.
+
+- **Controles y scripts integrados en `index.html`:**
+  - Inclusión de scripts modulares al final del `<body>`:
+    ```html
+    <script src="datos.js"></script>
+    <script src="funciones.js"></script>
+    <script src="render.js"></script>
+    <script src="app.js"></script>
+    <script src="eventos.js"></script>
+    ```
+  - Contenedor de controles interactivos (`.controles`):
+    - Campo de búsqueda: `<input type="search" id="buscador">` con etiqueta `<label for="buscador" class="visualmente-oculto">` para accesibilidad.
+    - Botones de categorías: `<div id="filtros">` con botones interactivos y atributos `data-categoria` (`todos`, `RAM`, `procesador`, `tarjeta gráfica`, etc.).
+  - Contador y mensajes de resultados: `<p id="resultado" aria-live="polite"></p>` para anunciar en vivo la cantidad de productos coincidentes.

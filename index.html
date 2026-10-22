@@ -1,76 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Distribuidor de hardware  de computadoras">
-        <title>CompuTechStore</title>
-        <link rel="stylesheet"href="estilos.css">
-    <head>
-    <body>
-        <header>
-            <h1>CompuTechStore</h1>
-            <p>Distribuidor de hardware de computadoras</p>
-            <nav>
-                <ul>
-                    <li><a href="#Productos">Productos</a></li>
-                    <li><a href="#Cotizador">Cotizador</a></li>
-                    <li><a href="#Horarios">Horarios</a></li>
-                    <li><a href="#Contacto">Contactos</a></li>
-                    <li><a href="#Como llegar">Como llegar</a></li>
-                </ul>
-            </nav>
-        </header>
-            
-        <main>
-            <section id="productos">
-                <h2>Nuestros productos</h2>
-                <aricle>
-                <h2>Pc de escrtitorio</h2>
-                <p>computadoras de escritorio</p>
-                </article>
-                <figure>
-                    <img src="torreCPU.jpg"
-                        alt="torre de cpu gamer"
-                        width="800" height="600">
-                    <figcaption>Torre CPU gamer.</figcaption>
-                </figure>
-                <aricle>
-                <h2>Tarjetas Madre</h2>
-                <p>Tarjetas Madre Toda ls marcas.</p>
-                </article>
-                <aricle>
-                <h2>Procesadores</h2>
-                <p>Procesadores en Intel y AMD</p>
-                </article>
-                <aricle>
-                <h2>Memorias RAM</h2>
-                <p>Memorias RAM 4, 8, 16, DDR3, DDR4 y DDR5</p>
-                </article>
-                <aricle>
-                <h2>Tarjetas Gráficas</h2>
-                <p>Gráficos dedicados AMD y NVIDIA</p>
-                </article>
-                <aricle>
-                <h2>Refrigeracion</h2>
-                <p>Disipadores con refrigeracion líquida y refrigeracion pasiva</p>
-                </article>
-                <aricle>
-                <h2>Fuentes de Alimentacion</h2>
-                <p>Fuente modular y no modular</p>
-                </article>
-                <aricle>
-                <h2>Gabinetes</h2>
-                <p>gabinetes en todas las marcas</p>
-                </article>
-                
-            </section>
-            <section>
-                <h2>Horarios</h2>
-                <p>lunes a sabado, de 8:30 a12:30 y de 14:00 a 19:30</p>
-            </section>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Distribuidor de hardware de computadoras">
+    <title>CompuTechStore</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <h1>CompuTechStore</h1>
+        <p>Tienda de hardware</p>
+        <p id="aviso-stock"></p>
+        <nav>
+            <ul>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#horarios">Horarios</a></li>
+                <li><a href="#contacto">Contacto y cómo llegar</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="productos">
+            <h2>Nuestros productos</h2>
+
+            <!-- Controles para eventos.js: buscador, filtros por categoría y contador de resultados -->
+
+            <label for="buscador" class="visualmente-oculto">Buscar productos</label>
+            <input type="search" id="buscador" placeholder="Buscar por nombre...">
+
+            <div id="filtros">
+                <button type="button" data-categoria="todos" class="activo">Todos</button>
+                <button type="button" data-categoria="RAM">RAM</button>
+                <button type="button" data-categoria="procesador">Procesadores</button>
+                <button type="button" data-categoria="tarjeta gráfica">Tarjetas gráficas</button>
+                <button type="button" data-categoria="tarjeta madre">Tarjetas madre</button>
+                <button type="button" data-categoria="almacenamiento">Almacenamiento</button>
+                <button type="button" data-categoria="fuente de poder">Fuentes de poder</button>
+                <button type="button" data-categoria="refrigeración">Refrigeración</button>
+                <button type="button" data-categoria="gabinete">Gabinetes</button>
+                <button type="button" data-categoria="monitor">Monitores</button>
+            </div>
+            </div>
+
+            <p id="resultado" aria-live="polite"></p>
+
+            <!-- Las tarjetas ya no se escriben a mano: render.js las genera desde datos.js -->
+            <div id="lista-productos"></div>
+
+            <figure>
+                <img src="torreCPU.jpg" alt="Torre de CPU gamer" width="800" height="600">
+                <figcaption>Torre CPU gamer.</figcaption>
+            </figure>
+        </section>
+
+        <section id="horarios">
+            <h2>Horarios</h2>
+            <p>Lunes a sábado, de 8:30 a 12:30 y de 14:00 a 19:30.</p>
+
             <table>
-                <caption> precios por producto y disponibilidad</caption>
+                <caption>Precios por producto y disponibilidad</caption>
                 <thead>
                     <tr>
                         <th scope="col">Producto</th>
@@ -79,112 +72,163 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Tarjeta madre</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Procesadores</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Memorias RAM</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Refrigeracion</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Tarjeta Grafica</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Fuente de Alimentación</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
-                    <tr><td>Monitores</td></tr> <td>Bs 7000</td> <td>todos los dias</td></td></tr>
+                    <tr>
+                        <td>Tarjeta madre ASUS TUF Z360 Plus Gaming</td>
+                        <td>Bs 1600</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Procesador Intel i9 13900K</td>
+                        <td>Bs 3000</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Memoria RAM 8 GB DDR3 KingFast</td>
+                        <td>Bs 170</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Refrigeración líquida Corsair iCUE H150i</td>
+                        <td>Bs 1000</td>
+                        <td>Agotado</td>
+                    </tr>
+                    <tr>
+                        <td>Tarjeta de video EVGA GTX 1060 6 GB</td>
+                        <td>Bs 5000</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Fuente de poder EVGA 700 W 80 Plus</td>
+                        <td>Bs 500</td>
+                        <td>Agotado</td>
+                    </tr>
+                    <tr>
+                        <td>SSD Kingston 500 GB</td>
+                        <td>Bs 900</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Gabinete Corsair</td>
+                        <td>Bs 400</td>
+                        <td>Todos los días</td>
+                    </tr>
+                    <tr>
+                        <td>Monitor Gamer Samsung 24&quot; 144Hz</td>
+                        <td>Bs 1500</td>
+                        <td>Todos los días</td>
+                    </tr>
                 </tbody>
             </table>
             <figure>
-                <img src="vitrina.jfif"
-                     alt="vitrina con  hardware de computadoras"
-                     width="600" height="400">
-                <figcaption>la vitrina a la primera hora de la mañana.</figcaption>
+                <img src="vitrina.jpg" alt="Vitrina con hardware de computadoras" width="600" height="400">
+                <figcaption>La vitrina a primera hora de la mañana.</figcaption>
             </figure>
         </section>
 
         <section id="pedido">
-        <h2>Hacer n pedido</h2>
+            <h2>Hacer un pedido</h2>
 
-        <form action="/pedido" method="post">
+            <form action="/pedido" method="post">
 
-          <fieldset>
-            <legend>Tus datos</legend>
+                <fieldset>
+                    <legend>Tus datos</legend>
 
-            <p>
-              <label for="nombre">Nombre completo</label>
-              <input type="text" id="nombre" name="nombre"
-                     autocomplete="name" required>
-            </p>
+                    <p>
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+                    </p>
 
-            <p>
-              <label for="email">Correo electrónico</label>
-              <input type="email" id="email" name="email"
-                     autocomplete="email" required>
-            </p>
+                    <p>
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </p>
 
-            <p>
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono"
-                     autocomplete="tel" pattern="[0-9]{7,8}"
-                     title="7 u 8 dígitos, sin espacios">
-            </p>
-          </fieldset>
-          <fieldset>
-            <legend>Tu pedido</legend>
+                    <p>
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" autocomplete="tel" pattern="[0-9]{7,8}"
+                            title="7 u 8 dígitos, sin espacios">
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>Tu pedido</legend>
 
-            <p>
-              <label for="producto">Producto</label>
+                    <p>
+                        <label for="producto">Producto</label>
 
-              <select id="producto" name="producto" required>
-                <option value="">Elige uno</option>
-                <option value="producto de la semana">Producto de la semana</option>
-                <option value="componentes">Componentes</option>
-                <option value="graficos">Graficos</option>
-              </select>
-            </p>
+                        <select id="producto" name="producto" required>
+                            <option value="">Elige uno</option>
+                            <option value="Memoria RAM 8 GB DDR3 KingFast">Memoria RAM 8 GB DDR3 KingFast - Bs 170
+                            </option>
+                            <option value="Gabinete Corsair">Gabinete Corsair - Bs 400</option>
+                            <option value="Tarjeta madre ASUS TUF Z360 Plus Gaming">Tarjeta madre ASUS TUF Z360 Plus
+                                Gaming - Bs 1600</option>
+                            <option value="Fuente de poder EVGA 700 W 80 Plus">Fuente de poder EVGA 700 W 80 Plus - Bs
+                                500</option>
+                            <option value="Procesador Intel i9 13900K">Procesador Intel i9 13900K - Bs 3000</option>
+                            <option value="Tarjeta de video EVGA GTX 1060 6 GB">Tarjeta de video EVGA GTX 1060 6 GB - Bs
+                                5000</option>
+                            <option value="SSD Kingston 500 GB">SSD Kingston 500 GB - Bs 900</option>
+                            <option value="Refrigeración líquida Corsair iCUE H150i">Refrigeración líquida Corsair iCUE
+                                H150i - Bs 1000</option>
+                            <option value="Monitor Gamer Samsung 24 144Hz">Monitor Gamer Samsung 24&quot; 144Hz - Bs
+                                1500</option>
+                        </select>
+                    </p>
 
-            <p>
-              <label for="cantidad">Cantidad</label>
-              <input type="number" id="cantidad" name="cantidad"
-                     min="1" max="100" value="1" required>
-            </p>
+                    <p>
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" max="100" value="1" required>
+                    </p>
 
-            <p>
-              <label for="fecha">Fecha de entrega</label>
-              <input type="date" id="fecha" name="fecha" required>
-            </p>
+                    <p>
+                        <label for="fecha">Fecha de entrega</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </p>
 
-            <p>
-              <label for="notas">Alguna indicación</label>
-              <textarea id="notas" name="notas" rows="3"></textarea>
-            </p>
+                    <p>
+                        <label for="notas">Alguna indicación</label>
+                        <textarea id="notas" name="notas" rows="3"></textarea>
+                    </p>
 
-            <p>
+                    <p>
 
-              <input type="checkbox" id="terminos" name="terminos" required>
-              <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
-            </p>
-          </fieldset>
+                        <input type="checkbox" id="terminos" name="terminos" required>
+                        <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
+                    </p>
+                </fieldset>
 
-          <button type="submit">Enviar pedido</button>
-        </form>
+                <button type="submit">Enviar pedido</button>
+            </form>
         </section>
 
-        </main>
-        <aside>
-            
+    </main>
+    <aside>
 
-            <h2>¿Sabias?</h2>
-            <p>CompuTechStore hace pedidos a precio de fabrica</p>
-        </aside>
-        <footer id="contacto">
-            <h2>Contacto</h2>
-            <address>
-                Av. La Paz a media cuadra de la plaza principal<br>
-                Telefono: 71265247
-            </address>
-            <p>
-                Siguenos en:
-                <a href="https://www.facebook.com/CompuTechStore"
-                target="_blanck" rel="noopener noreferrer">
-                                                            Faceboook
-                 </a>
-            </p>
-            <p><small>&copy; 2026 CompuTechStore</small></p>
-        </footer>
-    </body>
+
+        <h2>¿Sabías?</h2>
+        <p>CompuTechStore hace pedidos a precio de fábrica.</p>
+    </aside>
+    <footer id="contacto">
+        <h2>Contacto</h2>
+        <address>
+            Av. La Paz a media cuadra de la plaza principal<br>
+            Teléfono: 71265247
+        </address>
+        <p>
+            Siguenos en:
+            <a href="https://www.facebook.com/CompuTechStore" target="_blank" rel="noopener noreferrer">
+                Facebook
+            </a>
+        </p>
+        <p><small>&copy; 2026 CompuTechStore</small></p>
+    </footer>
+
+    <script src="datos.js"></script>
+    <script src="funciones.js"></script>
+    <script src="render.js"></script>
+    <script src="app.js"> </script>
+    <script src="eventos.js"> </script>
+
+</body>
+
 </html>

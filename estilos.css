@@ -6,7 +6,7 @@
 /* ── 2. CUSTOM PROPERTIES: se define una vez, se usa en todos lados ────── */
 :root {
   --color-principal: #045140;
-  --color-acento:    hsl(181, 83%, 67%);
+  --color-acento:    #0a6c74;   /* antes hsl(181, 83%, 67%): los precios casi no se leían sobre blanco (1,4) */
   --color-texto:     #1f2933;
   --color-suave:     #5c6b73;
   --color-fondo:     #c9f3ef;
@@ -201,4 +201,109 @@ nav li { margin-bottom: 0; }
   main   { grid-area: principal; }
   aside  { grid-area: lateral; }
   footer { grid-area: pie; }
+}
+#productos {
+  display: block;
+}
+
+#lista-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--espacio);
+  align-items: start;
+}
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.tarjeta h3 { margin: 0; }
+
+.precio {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-acento);
+  margin: 0;
+}
+
+.stock {
+  margin: 0;
+  color: var(--color-suave);
+  font-size: 0.9rem;
+}
+
+.agotado {
+  background: var(--color-fondo);
+}
+.agotado .precio {
+  text-decoration: line-through;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  align-items: center;
+  margin-bottom: var(--espacio);
+}
+
+#buscador {
+  flex: 1 1 14rem;        /* crece, se encoge, y nunca baja de 14rem */
+  max-width: 22rem;
+}
+
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Los botones de filtro son secundarios: se ven distintos del botón de
+   enviar el pedido, que es la acción principal de la página. */
+#filtros button {
+  background: transparent;
+  color: var(--color-principal);
+  border: 1px solid var(--borde);
+  padding: 0.4rem 0.9rem;
+  min-height: 40px;
+}
+#filtros button:hover {
+  background: var(--color-fondo);
+  color: var(--color-principal);
+}
+
+/* La clase que pone y quita eventos.js para marcar el filtro elegido.
+   Otra vez: el JavaScript decide QUÉ clase, el CSS decide cómo se ve. */
+#filtros button.activo {
+  background: var(--color-principal);
+  color: #fff;
+  border-color: var(--color-principal);
+}
+
+#resultado {
+  color: var(--color-suave);
+  font-size: 0.9rem;
+  min-height: 1.4em;      /* reserva la altura para que la lista no salte */
+}
+
+/* ── Ocultar SOLO para la vista, no para el lector de pantalla ───────────
+   display:none y visibility:hidden esconden el elemento de todo el mundo,
+   incluido el lector de pantalla. Esta técnica lo saca de la pantalla pero
+   lo deja disponible para quien navega escuchando.
+   Se usa para etiquetas que visualmente sobran pero que el campo necesita. */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
