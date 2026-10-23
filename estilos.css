@@ -179,6 +179,13 @@ nav li { margin-bottom: 0; }
   justify-content: space-between;
   min-height: 9rem;
   margin-bottom: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#productos article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(4, 81, 64, 0.15);
 }
 
 /* ── La página completa, con áreas nombradas ───────────────────────────── */
@@ -306,4 +313,63 @@ nav li { margin-bottom: 0; }
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── DEMO DÍA 10: COMPARATIVA JQUERY Y VANILLA ─────────────────────────── */
+#demo-jquery {
+  margin-top: var(--espacio-lg);
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.comparativa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--espacio);
+  margin-top: var(--espacio);
+}
+
+.comparativa-grid article {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comparativa-grid button {
+  margin-top: var(--espacio);
+  padding: 0.5rem 1rem;
+  background: var(--color-principal);
+  color: #fff;
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.comparativa-grid button:hover {
+  background: var(--color-acento);
+}
+
+/* Clases dinámicas manejadas por jquery-comparado.js */
+.resaltado {
+  background-color: #fef08a;
+  color: #1e293b;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radio);
+}
+
+.destacado {
+  border: 2px dashed var(--color-acento);
+  border-radius: var(--radio);
+  padding: 0.75rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.destacado:hover {
+  transform: translateY(-2px);
 }

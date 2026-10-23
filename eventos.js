@@ -84,6 +84,24 @@ filtros.addEventListener("click", (event) => {
   actualizar();
 });
 
+// ── 4.1 SELECCIONAR PRODUCTO AL HACER CLIC EN UNA TARJETA ───────────────
+// Al hacer clic sobre cualquier tarjeta de producto, se selecciona automáticamente
+// en el <select id="producto"> del pedido y se desplaza la vista hacia el formulario.
+const contenedorTarjetas = document.querySelector("#lista-productos");
+if (contenedorTarjetas) {
+  contenedorTarjetas.addEventListener("click", (event) => {
+    const tarjeta = event.target.closest(".tarjeta");
+    if (!tarjeta) return;
+
+    const select = document.querySelector("#producto");
+    if (select && tarjeta.dataset.nombre) {
+      select.value = tarjeta.dataset.nombre;
+      select.scrollIntoView({ behavior: "smooth", block: "center" });
+      select.focus();
+    }
+  });
+}
+
 // ── 5. EL EVENTO submit Y preventDefault ────────────────────────────────
 // Por defecto, enviar un formulario recarga la página y manda los datos al
 // servidor. Como aquí no hay servidor, eso solo borraría todo.

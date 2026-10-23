@@ -149,3 +149,32 @@ const primeraTarjeta = document.querySelector(".tarjeta");
 console.log("Padre de la primera tarjeta:", primeraTarjeta.parentElement.id);
 console.log("Su producto es:", primeraTarjeta.dataset.nombre);
 
+// ── 8. POBLAR SELECT DE PEDIDOS DINÁMICAMENTE ───────────────────────────
+// Llena el <select id="producto"> a partir del arreglo de datos.js.
+// Así, al añadir, quitar o modificar productos en datos.js, la lista
+// desplegable de pedidos siempre estará actualizada automáticamente.
+const selectProducto = document.querySelector("#producto");
+
+function poblarSelectProductos(lista) {
+  if (!selectProducto) return;
+
+  // Se conserva la opción por defecto
+  selectProducto.innerHTML = '<option value="">Elige uno</option>';
+
+  lista.forEach(producto => {
+    const opcion = document.createElement("option");
+    opcion.value = producto.nombre;
+    opcion.textContent = `${producto.nombre} - Bs ${producto.precio}`;
+
+    if (!producto.disponible) {
+      opcion.disabled = true;
+      opcion.textContent += " (Agotado)";
+    }
+
+    selectProducto.append(opcion);
+  });
+}
+
+poblarSelectProductos(productos);
+
+

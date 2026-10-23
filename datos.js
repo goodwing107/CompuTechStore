@@ -65,22 +65,34 @@ console.log(productoDeAyer);
 // que permite recorrerlos con un solo bloque de código.
 const productos = [
   { nombre: "Memoria RAM 8 GB DDR3 KingFast", precio: 170, categoria: "RAM", stock: 40, disponible: true },
-  { nombre: "Memoria RAM 8 GB DDR4 kingston", precio: 190, categoria: "RAM", stock: 80, disponible: true },
+  { nombre: "Memoria RAM 8 GB DDR4 Kingston", precio: 190, categoria: "RAM", stock: 80, disponible: true },
   { nombre: "Memoria RAM 8 GB DDR5 Corsair rgb", precio: 600, categoria: "RAM", stock: 20, disponible: true },
   { nombre: "Gabinete Corsair", precio: 400, categoria: "gabinete", stock: 25, disponible: true },
   { nombre: "Tarjeta madre ASUS TUF Z360 Plus Gaming", precio: 1600, categoria: "tarjeta madre", stock: 15, disponible: true },
-  { nombre: "Fuente de poder EVGA 700 W 80 Plus", precio: 500, categoria: "fuente de poder", stock: 15, disponible: true },
+  { nombre: "Tarjeta madre MSI GE66 Raider Gaming", precio: 2200, categoria: "tarjeta madre", stock: 8, disponible: true },
+  { nombre: "Fuente de poder EVGA 700 W 80 Plus Platinum", precio: 500, categoria: "fuente de poder", stock: 15, disponible: true },
+  { nombre: "Fuente de poder SENTEY 700 W 80 Plus gold modular", precio: 600, categoria: "fuente de poder", stock: 9, disponible: true },
   { nombre: "Procesador Intel i9 13900K", precio: 3000, categoria: "procesador", stock: 16, disponible: true },
-  { nombre: "Tarjeta de video EVGA GTX 1060 6 GB", precio: 5000, categoria: "tarjeta gráfica", stock: 10, disponible: true },
+  { nombre: "Procesador Intel i5 14400F", precio: 2600, categoria: "procesador", stock: 12, disponible: true },
+  { nombre: "Procesador AMD Ryzen 9 7950x", precio: 4300, categoria: "procesador", stock: 16, disponible: true },
+  { nombre: "Procesador AMD Ryzen 7 7800x3D", precio: 4600, categoria: "procesador", stock: 13, disponible: true },
+  { nombre: "Procesador AMD Ryzen 5 7600", precio: 3400, categoria: "procesador", stock: 6, disponible: true },
+  { nombre: "Tarjeta de video EVGA GTX 1060 6 GB", precio: 3000, categoria: "tarjeta gráfica", stock: 18, disponible: true },
+  { nombre: "Tarjeta de video ASUS RTX 5060 8 GB", precio: 5000, categoria: "tarjeta gráfica", stock: 12, disponible: true },
+  { nombre: "Tarjeta de video AMD RTX 5060 8 GB", precio: 4500, categoria: "tarjeta gráfica", stock: 8, disponible: true },
   { nombre: "SSD Kingston 500 GB", precio: 900, categoria: "almacenamiento", stock: 50, disponible: true },
+  { nombre: "SSD NVM Kingston 500 GB", precio: 1200, categoria: "almacenamiento", stock: 50, disponible: true },
+  { nombre: "HDD Western Digital 1 TB", precio: 450, categoria: "almacenamiento", stock: 60, disponible: true },
   { nombre: "Refrigeración líquida Corsair iCUE H150i", precio: 1000, categoria: "refrigeración", stock: 8, disponible: true },
-  { nombre: "Monitor Gamer Samsung 24\" 144Hz", precio: 1500, categoria: "monitor", stock: 12, disponible: true },
+  { nombre: "Refrigeración líquida DEEPCOOL LEE360", precio: 1076, categoria: "refrigeración", stock: 8, disponible: true },
+  { nombre: "Monitor MSI MPG 314CQR 24 144Hz", precio: 1000, categoria: "monitor", stock: 8, disponible: true },
+  { nombre: "Monitor Gamer Samsung 24 144Hz", precio: 1500, categoria: "monitor", stock: 12, disponible: true },
 ];
 
 // ── 4. LOS MÉTODOS QUE IMPORTAN ─────────────────────────────────────────
 // Todos reciben una FUNCIÓN como argumento, que es lo que se vio ayer.
 // Cada uno la aplica a cada elemento y hace algo distinto con el resultado.
-//
+// 
 // La diferencia clave, y la que más confunde al principio:
 //
 //     forEach   recorre y NO DEVUELVE NADA. Es para hacer algo con cada uno.
@@ -136,10 +148,10 @@ const nombresDisponibles = productos
 console.log(nombresDisponibles);
 
 // Tres preguntas de negocio resueltas encadenando:
-const totalDulcesEnStock = productos
-  .filter(p => p.categoria === "dulces" && p.disponible)
+const totalProcesadoresEnStock = productos
+  .filter(p => p.categoria === "procesador" && p.disponible)
   .reduce((total, p) => total + p.precio * p.stock, 0);
-console.log("Dulces en stock: Bs", totalDulcesEnStock.toFixed(2));
+console.log("Procesadores en stock: Bs", totalProcesadoresEnStock.toFixed(2));
 
 // Agrupar por categoría con reduce. El acumulador aquí es un OBJETO, no un
 // número: se va llenando con una lista por cada categoría encontrada.
