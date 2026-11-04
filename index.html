@@ -11,14 +11,19 @@
 
 <body>
     <header>
-        <h1>CompuTechStore</h1>
-        <p>Tienda de hardware</p>
+        <div class="marca">
+            <img class="logo-tienda" src="imagenes/logo-computechstore.svg" alt="Logo de computadora de CompuTechStore">
+            <div>
+                <h1>CompuTechStore</h1>
+                <p>Tienda de hardware</p>
+            </div>
+        </div>
         <p id="aviso-stock"></p>
         <nav>
             <ul>
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="#horarios">Horarios</a></li>
-                <li><a href="#demo-jquery">Demo jQuery</a></li>
+
                 <li><a href="#contacto">Contacto y cómo llegar</a></li>
 
             </ul>
@@ -27,7 +32,17 @@
 
     <main>
         <section id="productos">
-            <h2>Nuestros productos</h2>
+            <div class="encabezado-productos">
+                <h2>Nuestros productos</h2>
+                <div class="control-orden">
+                    <label for="orden">Ordenar por</label>
+                    <select id="orden">
+                        <option value="nombre">Nombre</option>
+                        <option value="precio">Precio</option>
+                        <option value="stock">Stock</option>
+                    </select>
+                </div>
+            </div>
 
             <!-- Controles para eventos.js: buscador, filtros por categoría y contador de resultados -->
 
@@ -52,9 +67,9 @@
             <!-- Las tarjetas ya no se escriben a mano: render.js las genera desde datos.js -->
             <div id="lista-productos"></div>
 
-            <figure>
-                <img src="torreCPU.jpg" alt="Torre de CPU gamer" width="800" height="600">
-                <figcaption>Torre CPU gamer.</figcaption>
+            <figure class="figura-informativa">
+                <img src="pc armada.jpg" alt="Torre de CPU gamer" width="800" height="600">
+                <figcaption>PC armada.</figcaption>
             </figure>
         </section>
 
@@ -62,8 +77,10 @@
             <h2>Horarios</h2>
             <p>Lunes a sábado, de 8:30 a 12:30 y de 14:00 a 19:30.</p>
 
-            <table>
-                <caption>Precios por producto y disponibilidad</caption>
+            <details class="tabla-desplegable">
+                <summary>Precios por producto y disponibilidad</summary>
+                <table>
+                <caption>Lista de productos, precios y disponibilidad</caption>
                 <thead>
                     <tr>
                         <th scope="col">Producto</th>
@@ -188,10 +205,16 @@
                         <td>Todos los días</td>
                     </tr>
                 </tbody>
-            </table>
-            <figure>
-                <img src="vitrina.jpg" alt="Vitrina con hardware de computadoras" width="600" height="400">
-                <figcaption>La vitrina a primera hora de la mañana.</figcaption>
+                </table>
+            </details>
+            
+            <figure class="figura-informativa">
+                <img src="vitrina.jpg"
+                     alt="Vitrina con componentes de hardware en CompuTechStore"
+                     width="600" height="400"
+                     loading="lazy"
+                     decoding="async">
+                <figcaption>La vitrina de componentes de CompuTechStore.</figcaption>
             </figure>
         </section>
 
@@ -221,6 +244,12 @@
                 </fieldset>
                 <fieldset>
                     <legend>Tu pedido</legend>
+
+                    <p>
+                        <label for="componentes-carrito">Componentes agregados al carrito</label>
+                        <textarea id="componentes-carrito" name="componentes_carrito" rows="5" readonly
+                            placeholder="Usa «Realizar pedido» para importar los componentes del carrito."></textarea>
+                    </p>
 
                     <p>
                         <label for="producto">Producto</label>
@@ -256,23 +285,126 @@
             </form>
         </section>
 
-        <section id="demo-jquery">
-            <h2>Comparación: JavaScript Vanilla vs jQuery (Día 10)</h2>
-            <p>Demostración práctica de manipulación del DOM y manejo de eventos:</p>
+        <section id="tablero-zona">
+          <h2>Planificar el día</h2>
+          <p>Arrastra cada producto a la columna que corresponda.</p>
 
-            <div class="comparativa-grid">
-                <article>
-                    <h3>Vanilla JS</h3>
-                    <p id="salida-vanilla">Texto original vanilla</p>
-                    <button type="button" id="boton-vanilla">Alternar resaltado (Vanilla)</button>
-                </article>
-
-                <article>
-                    <h3>jQuery</h3>
-                    <p id="salida-jquery">Texto original jQuery</p>
-                    <button type="button" id="boton-jquery">Alternar resaltado (jQuery)</button>
-                </article>
+          <div id="tablero">
+            <div class="columna" data-columna="componentes de hardware">
+              <h3>Componentes de hardware</h3>
+              <ul class="lista-columna"></ul>
+              <p class="total"></p>
             </div>
+           <!-- <div class="columna" data-columna="reponer">
+              <h3>Reponer</h3>
+              <ul class="lista-columna"></ul>
+              <p class="total"></p>
+            </div>-->
+            <div class="columna" data-columna="arma tu pc">
+              <h3>Carrito de componentes</h3>
+              <p class="carrito-vacio">Agrega componentes desde la lista para llenar el carrito.</p>
+              <ul class="lista-columna"></ul>
+              <div class="carrito-progreso" role="progressbar" aria-label="Capacidad del carrito" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="Carrito vacío">
+                <div class="carrito-progreso-llenado"></div>
+              </div>
+              <p class="carrito-progreso-texto" aria-live="polite"></p>
+              <p class="total" aria-live="polite"></p>
+              <div class="carrito-acciones">
+                <p class="carrito-precio-total" aria-live="polite">Total del pedido: Bs 0.00</p>
+                <div class="carrito-botones">
+                <button type="button" class="boton-realizar-pedido" disabled>Realizar pedido</button>
+                  <button type="button" class="vaciar-pedido" disabled>Vaciar pedido</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <canvas id="grafico" width="600" height="220">
+            Gráfico de los totales por columna. Los valores están en el texto de
+            cada columna.
+          </canvas>
+        </section>
+        
+        <section id="preferencias">
+            <h2>Tus preferencias</h2>
+    
+            <button type="button" id="tema-toggle" aria-pressed="false">Modo oscuro</button>
+
+        <!--<button type="button" id="olvidar">Olvidar mis preferencias</button>-->
+
+        <p id="estado-prefs" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="ubicacion">
+        <h2>¿Estás cerca?</h2>
+        <p>Calculamos la distancia hasta el local. Tu ubicación no sale de tu navegador.</p>
+
+        <button type="button" id="ubicarme">Calcular mi distancia</button>
+        <p id="estado-ubicacion" role="status" aria-live="polite"></p>
+        <div id="mapa" style="width: 100%; height: 350px; margin-top: 20px; border-radius: 8px;"></div>
+        <div class="contenedor-mapa" style="margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+        <iframe 
+          id="mapa-tienda"
+          src="https://google.com" 
+          width="100%" 
+          height="350" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+      </section>
+
+
+        <section id="panel">
+            <h2>Panel del proyecto</h2>
+
+            <!-- MENÚ QUE SE DESPLIEGA
+             aria-expanded le dice al lector de pantalla si está abierto o
+             cerrado. Lo actualiza el script cada vez que cambia: un atributo
+             que miente es peor que no ponerlo. -->
+            <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu-movil">
+                Menú
+            </button>
+            <nav id="menu-movil" hidden>
+                <ul>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#horarios">Horarios</a></li>
+                    <li><a href="#pedido">Pedido</a></li>
+                </ul>
+            </nav>
+
+            <!-- ACORDEÓN
+             Cada pregunta es un <button> (no un <div>): así se puede enfocar
+             con Tab y activar con Enter sin escribir una línea extra.
+             aria-expanded dice si está abierto; el script lo lee y lo cambia. -->
+            <div id="acordeon">
+                <div class="item">
+                    <button type="button" class="titulo" aria-expanded="false">¿Hacen pedidos por encargo?</button>
+                    <div class="cuerpo" hidden>
+                        <p>Sí, con 24 horas de anticipación y un mínimo de una docena.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <button type="button" class="titulo" aria-expanded="false">¿Tienen delivery?</button>
+                    <div class="cuerpo" hidden>
+                        <p>En un radio de diez cuadras, sin costo adicional.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <button type="button" class="titulo" aria-expanded="false">¿Qué formas de pago aceptan?</button>
+                    <div class="cuerpo" hidden>
+                        <p>Efectivo y código QR.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="mostrar-avisos">Mostrar avisos</button>
+            <ul id="avisos">
+                <li hidden>15% de descuento en tu 2º producto.</li>
+                <li hidden>los jueves envío sin cargo.</li>
+                <li hidden>El lunes cerramos por feriado.</li>
+            </ul>
         </section>
 
     </main>
@@ -285,7 +417,7 @@
     <footer id="contacto">
         <h2>Contacto</h2>
         <address>
-            Av. La Paz a media cuadra de la plaza principal<br>
+            Av. La Paz a cuadra y media de la plaza principal 15 de agosto<br>
             Teléfono: 71265247
         </address>
         <p>
@@ -304,6 +436,10 @@
     <script src="app.js"> </script>
     <script src="eventos.js"> </script>
     <script src="jquery-comparado.js"></script>
+    <script src="jquery-panel.js"></script>
+    <script src="remoto.js"></script>
+    <script src="preferencias.js"></script>
+    <script src="tablero.js"></script>
 
 </body>
 

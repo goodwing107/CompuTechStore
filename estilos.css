@@ -5,11 +5,11 @@
 
 /* ── 2. CUSTOM PROPERTIES: se define una vez, se usa en todos lados ────── */
 :root {
-  --color-principal: #045140;
-  --color-acento:    #0a6c74;   /* antes hsl(181, 83%, 67%): los precios casi no se leían sobre blanco (1,4) */
+  --color-principal: #130363;
+  --color-acento:    #4b60eb;   /* antes hsl(181, 83%, 67%): los precios casi no se leían sobre blanco (1,4) */
   --color-texto:     #1f2933;
-  --color-suave:     #5c6b73;
-  --color-fondo:     #c9f3ef;
+  --color-suave:     #47cafa;
+  --color-fondo:     #bbdcf6;
   --color-superficie: #ffffff;
   --borde:           #b7b9bc;
 
@@ -85,6 +85,29 @@ caption {
   color: var(--color-suave);
   padding-bottom: 0.5rem;
 }
+.tabla-desplegable {
+  max-width: 40rem;
+  margin-bottom: var(--espacio);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+}
+.tabla-desplegable summary {
+  padding: 0.75rem 1rem;
+  color: var(--color-principal);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tabla-desplegable summary:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+.tabla-desplegable[open] summary {
+  border-bottom: 1px solid var(--borde);
+}
+.tabla-desplegable table {
+  border-radius: 0 0 var(--radio) var(--radio);
+}
 th, td {
   text-align: left;
   padding: 0.6rem 0.8rem;
@@ -103,6 +126,22 @@ fieldset {
   margin-bottom: var(--espacio);
   max-width: 32rem;
 }
+#pedido form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espacio);
+}
+#pedido fieldset {
+  max-width: none;
+  margin-bottom: 0;
+}
+#pedido form > button { justify-self: start; }
+
+@media (min-width: 48rem) {
+  #pedido form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #pedido form > button { grid-column: 1 / -1; }
+}
+
 legend {
   padding: 0 0.4rem;
   font-weight: 600;
@@ -140,6 +179,29 @@ button:hover { background: var(--color-acento); }
 
 img { max-width: 100%; height: auto; }
 
+.figura-informativa {
+  max-width: 50rem;
+  margin: var(--espacio-lg) auto;
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.figura-informativa img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radio);
+}
+
+.figura-informativa figcaption {
+  margin-top: 0.5rem;
+  color: var(--color-suave);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 footer {
   margin-top: var(--espacio-lg);
   padding: var(--espacio-lg) var(--espacio);
@@ -150,8 +212,24 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: var(--espacio);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.logo-tienda {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: 0 0 auto;
+}
+.marca h1,
+.marca p {
+  margin: 0;
 }
 
 nav ul {
@@ -171,6 +249,22 @@ nav li { margin-bottom: 0; }
 }
 
 #productos h2 { grid-column: 1 / -1; }
+
+.encabezado-productos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.encabezado-productos h2 { margin: 0; }
+.control-orden {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.control-orden label { margin: 0; white-space: nowrap; }
+.control-orden select { width: auto; }
 
 /* ── SE COMBINAN ───────────────────────────────────────────────────────── */
 #productos article {
@@ -230,6 +324,15 @@ nav li { margin-bottom: 0; }
   gap: 0.35rem;
 }
 .tarjeta h3 { margin: 0; }
+
+.imagen-producto {
+  display: block;
+  width: 100%;
+  height: 11rem;
+  object-fit: contain;
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+}
 
 .precio {
   font-size: 1.25rem;
@@ -372,4 +475,355 @@ nav li { margin-bottom: 0; }
 
 .destacado:hover {
   transform: translateY(-2px);
+}
+
+#panel { margin-top: var(--espacio-lg); }
+
+/* El acordeón: cada item es un bloque con su título y su cuerpo. */
+#acordeon .item {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  margin-bottom: 0.5rem;
+  background: var(--color-superficie);
+}
+
+/* El título es un <button> de verdad, no un <div> con onclick. Se le quita
+   la apariencia de botón pero se conserva todo lo que un botón trae gratis:
+   se enfoca con Tab, se activa con Enter y con la barra espaciadora, y el
+   lector de pantalla lo anuncia como control. */
+#acordeon .titulo {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--color-principal);
+  border: 0;
+  border-radius: var(--radio);
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 44px;
+  cursor: pointer;
+}
+#acordeon .titulo:hover { background: var(--color-fondo); color: var(--color-principal); }
+
+/* El indicador se genera desde el atributo aria-expanded, no desde una clase
+   aparte. Así el estado visual y el estado accesible NO se pueden
+   desincronizar: son el mismo dato. */
+#acordeon .titulo::after {
+  content: " +";
+  float: right;
+  color: var(--color-acento);
+}
+#acordeon .titulo[aria-expanded="true"]::after { content: " −"; }
+
+#acordeon .cuerpo { padding: 0 1rem 0.8rem; }
+#acordeon .cuerpo p { margin: 0; }
+
+/* El menú desplegable */
+#menu-movil ul {
+  list-style: none;
+  padding: 0.5rem 0 0;
+  margin: 0 0 var(--espacio);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+}
+
+/* Los avisos arrancan ocultos con el atributo hidden del HTML; jQuery los
+   va mostrando de a uno. */
+#avisos {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--espacio);
+}
+#avisos li {
+  background: var(--color-superficie);
+  border-left: 3px solid var(--color-acento);
+  padding: 0.5rem 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+#remoto { margin-top: var(--espacio-lg); }
+#remoto button { margin-right: 0.5rem; margin-bottom: var(--espacio); }
+
+#estado {
+  min-height: 1.5em;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.cargando { color: var(--color-suave); }
+.cargando::before {
+  content: "●";
+  color: var(--color-principal);
+  margin-right: 0.4rem;
+  animation: latir 1s ease-in-out infinite;
+}
+@keyframes latir {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.25; }
+}
+
+.ok    { color: var(--color-principal); font-weight: 600; }
+
+.error {
+  color: #8a2b12;
+  background: #fdeee8;
+  border-left: 3px solid var(--color-acento);
+  padding: 0.5rem 0.8rem;
+  font-weight: 500;
+}
+.error::before { content: "⨯ "; }
+
+#lista-remota {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--espacio);
+  align-items: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cargando::before { animation: none; }
+}
+/*dia 13*/
+.tema-oscuro {
+  --color-principal:  #2e9dfd;
+  --color-acento:     #54c7f0;
+  --color-texto:      #e6edf3;
+  --color-suave:      #6db1f0;
+  --color-fondo:      #042343;
+  --color-superficie: #290d4c;
+  --borde:            #09284a;
+  color-scheme: dark;
+}
+
+body.tema-claro { color-scheme: light; }
+
+body { transition: background-color .25s, color .25s; }
+.tema-oscuro button, .tema-oscuro th { color: var(--color-fondo); }
+.tema-oscuro #filtros button.activo { color: var(--color-fondo); }
+
+.tema-oscuro .error {
+  background: #3a1d14;
+  color: #98e1f7;
+}
+
+#preferencias, #ubicacion { margin-top: var(--espacio-lg); }
+#preferencias button, #ubicacion button { margin-right: 0.5rem; }
+#preferencias label { display: inline; margin-right: 0.4rem; }
+#preferencias select { width: auto; display: inline-block; }
+
+#tema-toggle {
+  position: fixed;
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  top: max(1rem, env(safe-area-inset-top));
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#tema-toggle[aria-pressed="true"] {
+  background: var(--color-acento);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
+#tablero-zona { margin-top: var(--espacio-lg); }
+
+#tablero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--espacio);
+  margin-bottom: var(--espacio);
+}
+
+.columna {
+  background: var(--color-superficie);
+  border: 2px dashed var(--borde);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+  min-height: 10rem;
+}
+.columna h3 { margin-top: 0; }
+
+.columna[data-columna="arma tu pc"] {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: var(--color-principal);
+}
+
+.carrito-vacio {
+  margin: 0.5rem 0;
+  color: var(--color-suave);
+  font-size: 0.9rem;
+}
+
+.carrito-vacio[hidden] { display: none; }
+
+.carrito-progreso {
+  height: 1.1rem;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--color-fondo);
+}
+
+.carrito-progreso-llenado {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--color-principal), var(--color-acento));
+  transition: width 0.45s ease;
+}
+
+.carrito-progreso-texto {
+  margin: 0.35rem 0 0.75rem;
+  color: var(--color-suave);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.carrito-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  margin-top: auto;
+}
+
+.carrito-precio-total {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-acento);
+}
+
+.carrito-botones {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.boton-realizar-pedido {
+  background: var(--color-principal);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.boton-realizar-pedido:hover {
+  background: var(--color-acento);
+  color: #fff;
+}
+
+.boton-realizar-pedido:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrito-progreso-llenado { transition: none; }
+}
+
+/* La clase que pone y quita tablero.js mientras se arrastra por encima.
+   Sin este aviso visual, el usuario no sabe dónde va a caer la ficha: el
+   feedback durante el arrastre no es decoración, es la mitad de la
+   usabilidad. */
+.columna.encima {
+  border-color: var(--color-acento);
+  border-style: solid;
+  background: var(--color-fondo);
+}
+
+.lista-columna {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--espacio);
+  min-height: 3rem;
+}
+
+.ficha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--color-fondo);
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--color-principal);
+  border-radius: var(--radio);
+  padding: 0.5rem 0.7rem;
+  margin-bottom: 0.4rem;
+
+  /* grab / grabbing es el cursor que indica "esto se puede arrastrar".
+     Es la única señal que tiene el usuario antes de intentarlo. */
+  cursor: grab;
+}
+.ficha span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.ficha button {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+}
+.ficha:active { cursor: grabbing; }
+
+/* Mientras se arrastra, el original se atenúa: así se distingue de la copia
+   que el navegador dibuja siguiendo al cursor. */
+.ficha.arrastrando { opacity: 0.4; }
+
+.columna .total {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-suave);
+}
+
+/* ⚠️ NO se le da ancho fijo al canvas por CSS.
+   Los atributos width y height del HTML son el lienzo real; el CSS solo
+   estira esa imagen. Poner un ancho distinto aquí deforma todo.
+   max-width sí: encoge proporcionalmente en pantalla chica, como una imagen. */
+#grafico {
+  max-width: 100%;
+  height: auto;
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+/*dia 16*/
+h1 { font-size: clamp(1.75rem, 4vw + 1rem, 3rem); }
+h2 { font-size: clamp(1.35rem, 2.5vw + 0.6rem, 2rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body:not(.tema-claro):not(.tema-oscuro) {
+    --color-principal:  #7fb3e0;
+    --color-acento:     #e88a5c;
+    --color-texto:      #e6edf3;
+    --color-suave:      #9aa8b4;
+    --color-fondo:      #16202a;
+    --color-superficie: #1e2b38;
+    --borde:            #33465a;
+  }
+}
+@media (width >= 48rem) {
+  .controles { gap: var(--espacio-lg); }
+}
+img { max-width: 100%; height: auto; }
+
+.tarjeta img {
+  width: 100%;
+  aspect-ratio: 3 / 2;      /* reserva el espacio antes de que cargue */
+  object-fit: contain;
 }

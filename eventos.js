@@ -35,9 +35,14 @@ let textoBuscado = "";
 // Fíjate en que render() no cambió ni una línea. Recibir la lista como
 // parámetro, que ayer parecía un detalle, es lo que hace posible todo esto.
 function actualizar() {
+  const orden = document.querySelector("#orden").value;
   const visibles = productos
     .filter(p => categoriaActiva === "todos" || p.categoria === categoriaActiva)
-    .filter(p => p.nombre.toLowerCase().includes(textoBuscado.toLowerCase()));
+    .filter(p => p.nombre.toLowerCase().includes(textoBuscado.toLowerCase()))
+    .sort((a, b) => {
+      if (orden === "precio" || orden === "stock") return a[orden] - b[orden];
+      return a.nombre.localeCompare(b.nombre, "es");
+    });
 
   render(visibles);
   resultado.textContent = `${visibles.length} de ${productos.length} productos`;
@@ -177,4 +182,3 @@ console.log("ana@correo.bo válido:", PATRONES.correo.test("ana@correo.bo"));
 //
 // La regla, y no es opcional: validar en el cliente Y en el servidor. El
 // cliente por comodidad, el servidor por seguridad.
-

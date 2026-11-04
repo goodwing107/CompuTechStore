@@ -86,6 +86,13 @@ function crearTarjeta(producto) {
   // clics, esto es lo que permitirá saber en cuál se hizo clic.
   articulo.dataset.nombre = producto.nombre;
 
+  const imagen = document.createElement("img");
+  imagen.classList.add("imagen-producto");
+  imagen.src = producto.imagen || "imagenes/producto.svg";
+  imagen.alt = producto.nombre;
+  imagen.loading = "lazy";
+  imagen.decoding = "async";
+
   // innerHTML aquí es seguro: todo lo que se inserta lo arma este código.
   // Si `producto.nombre` viniera de un formulario, habría que usar
   // textContent en su lugar.
@@ -94,6 +101,7 @@ function crearTarjeta(producto) {
     <p class="precio">Bs ${producto.precio.toFixed(2)}</p>
     <p class="stock">${producto.disponible ? `${producto.stock} en stock` : "Agotado"}</p>
   `;
+  articulo.prepend(imagen);
 
   return articulo;
 }
@@ -176,5 +184,3 @@ function poblarSelectProductos(lista) {
 }
 
 poblarSelectProductos(productos);
-
-

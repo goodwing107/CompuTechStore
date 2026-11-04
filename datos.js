@@ -61,32 +61,32 @@ console.log(productoDeAyer);
 // La estructura más común de toda la programación web: una LISTA de cosas,
 // donde cada cosa tiene la MISMA forma.
 //
-// Que todos los objetos tengan las mismas propiedades no es un detalle: es lo
-// que permite recorrerlos con un solo bloque de código.
+// Los productos comparten sus propiedades y cada uno define su propia imagen.
+// Para cambiar la foto de un producto, basta con editar su propiedad `imagen`.
 const productos = [
-  { nombre: "Memoria RAM 8 GB DDR3 KingFast", precio: 170, categoria: "RAM", stock: 40, disponible: true },
-  { nombre: "Memoria RAM 8 GB DDR4 Kingston", precio: 190, categoria: "RAM", stock: 80, disponible: true },
-  { nombre: "Memoria RAM 8 GB DDR5 Corsair rgb", precio: 600, categoria: "RAM", stock: 20, disponible: true },
-  { nombre: "Gabinete Corsair", precio: 400, categoria: "gabinete", stock: 25, disponible: true },
-  { nombre: "Tarjeta madre ASUS TUF Z360 Plus Gaming", precio: 1600, categoria: "tarjeta madre", stock: 15, disponible: true },
-  { nombre: "Tarjeta madre MSI GE66 Raider Gaming", precio: 2200, categoria: "tarjeta madre", stock: 8, disponible: true },
-  { nombre: "Fuente de poder EVGA 700 W 80 Plus Platinum", precio: 500, categoria: "fuente de poder", stock: 15, disponible: true },
-  { nombre: "Fuente de poder SENTEY 700 W 80 Plus gold modular", precio: 600, categoria: "fuente de poder", stock: 9, disponible: true },
-  { nombre: "Procesador Intel i9 13900K", precio: 3000, categoria: "procesador", stock: 16, disponible: true },
-  { nombre: "Procesador Intel i5 14400F", precio: 2600, categoria: "procesador", stock: 12, disponible: true },
-  { nombre: "Procesador AMD Ryzen 9 7950x", precio: 4300, categoria: "procesador", stock: 16, disponible: true },
-  { nombre: "Procesador AMD Ryzen 7 7800x3D", precio: 4600, categoria: "procesador", stock: 13, disponible: true },
-  { nombre: "Procesador AMD Ryzen 5 7600", precio: 3400, categoria: "procesador", stock: 6, disponible: true },
-  { nombre: "Tarjeta de video EVGA GTX 1060 6 GB", precio: 3000, categoria: "tarjeta gráfica", stock: 18, disponible: true },
-  { nombre: "Tarjeta de video ASUS RTX 5060 8 GB", precio: 5000, categoria: "tarjeta gráfica", stock: 12, disponible: true },
-  { nombre: "Tarjeta de video AMD RTX 5060 8 GB", precio: 4500, categoria: "tarjeta gráfica", stock: 8, disponible: true },
-  { nombre: "SSD Kingston 500 GB", precio: 900, categoria: "almacenamiento", stock: 50, disponible: true },
-  { nombre: "SSD NVM Kingston 500 GB", precio: 1200, categoria: "almacenamiento", stock: 50, disponible: true },
-  { nombre: "HDD Western Digital 1 TB", precio: 450, categoria: "almacenamiento", stock: 60, disponible: true },
-  { nombre: "Refrigeración líquida Corsair iCUE H150i", precio: 1000, categoria: "refrigeración", stock: 8, disponible: true },
-  { nombre: "Refrigeración líquida DEEPCOOL LEE360", precio: 1076, categoria: "refrigeración", stock: 8, disponible: true },
-  { nombre: "Monitor MSI MPG 314CQR 24 144Hz", precio: 1000, categoria: "monitor", stock: 8, disponible: true },
-  { nombre: "Monitor Gamer Samsung 24 144Hz", precio: 1500, categoria: "monitor", stock: 12, disponible: true },
+  { nombre: "Memoria RAM 8 GB DDR3 KingFast", precio: 170, categoria: "RAM", imagen: "imagenes/memoria ram kingfast 8gb ddr3.webp", stock: 40, disponible: true },
+  { nombre: "Memoria RAM 8 GB DDR4 Kingston", precio: 190, categoria: "RAM", imagen: "imagenes/Memoria Ram Kingston Fury.webp", stock: 80, disponible: true },
+  { nombre: "Memoria RAM 8 GB DDR5 Corsair rgb", precio: 600, categoria: "RAM", imagen: "imagenes/Memoria Ram Corsair Ddr5.webp", stock: 20, disponible: true },
+  { nombre: "Gabinete Corsair", precio: 400, categoria: "gabinete", imagen: "imagenes/gabinete corsair.jpg", stock: 25, disponible: true },
+  { nombre: "Tarjeta madre Asus Tuf Gaming Z890-plus Wifi Ddr5 1851", precio: 1600, categoria: "tarjeta madre", imagen: "imagenes/Asus Tuf Gaming Z890.webp", stock: 15, disponible: true },
+  { nombre: "Tarjeta Madre Msi B650m Gaming Wifi Lga Am5 2x Ddr5 2x M.2 Pcie 4.0 Wifi 6e Bt 5.3 Micro Atx", precio: 2200, categoria: "tarjeta madre", imagen: "imagenes/Tarjeta Madre Msi B650m Gaming Wifi.webp", stock: 8, disponible: true },
+  { nombre: "Fuente de poder EVGA 700 W 80 Plus Platinum", precio: 500, categoria: "fuente de poder", imagen: "imagenes/fuente evga 700w.jpg", stock: 15, disponible: true },
+  { nombre: "Fuente de poder SENTEY 700 W 80 Plus gold modular", precio: 600, categoria: "fuente de poder", imagen: "imagenes/fuente de poder sentey 700w plus gold.jpg", stock: 9, disponible: true },
+  { nombre: "Procesador Intel i9 13900K", precio: 3000, categoria: "procesador", imagen: "imagenes/Procesador Intel Core i9-13900K.webp", stock: 16, disponible: true },
+  { nombre: "Procesador Intel i5 14400F", precio: 2600, categoria: "procesador", imagen: "imagenes/intel i5 14400f.webp", stock: 12, disponible: true },
+  { nombre: "Procesador AMD Ryzen 9 7950x", precio: 4300, categoria: "procesador", imagen: "imagenes/Procesador gamer AMD Ryzen 9 7950X.webp", stock: 16, disponible: true },
+  { nombre: "Procesador AMD Ryzen 7 7800x3D", precio: 4600, categoria: "procesador", imagen: "imagenes/Procesador gamer AMD Ryzen 7 7800X3D.webp", stock: 13, disponible: true },
+  { nombre: "Procesador AMD Ryzen 5 7600", precio: 3400, categoria: "procesador", imagen: "imagenes/Procesador Amd Ryzen 5 7600.webp", stock: 6, disponible: true },
+  { nombre: "Tarjeta de video EVGA GTX 1660 6 GB", precio: 3000, categoria: "tarjeta gráfica", imagen: "imagenes/graficos evga gtx1060 6gb.webp", stock: 18, disponible: true },
+  { nombre: "Tarjeta de video ASUS RTX 5060 8 GB", precio: 5000, categoria: "tarjeta gráfica", imagen: "imagenes/graficos asus rtx5060 8gb.webp", stock: 12, disponible: true },
+  { nombre: "Tarjeta de video AMD RTX 6600 8 GB", precio: 4500, categoria: "tarjeta gráfica", imagen: "imagenes/graficos amd radeon 6600 8gb.webp", stock: 8, disponible: true },
+  { nombre: "SSD Kingston 480 GB", precio: 900, categoria: "almacenamiento", imagen: "imagenes/ssd Kingston 480 gb.webp", stock: 50, disponible: true },
+  { nombre: "SSD NVM Kingston 500 GB", precio: 1200, categoria: "almacenamiento", imagen: "imagenes/nvm kingston 500gb.webp", stock: 50, disponible: true },
+  { nombre: "HDD Western Digital 1 TB", precio: 450, categoria: "almacenamiento", imagen: "imagenes/hdd westen digital 1tb.png", stock: 60, disponible: true },
+  { nombre: "Refrigeración líquida Corsair iCUE H150i", precio: 1000, categoria: "refrigeración", imagen: "imagenes/refrigeracion corsair icue h150.webp", stock: 8, disponible: true },
+  { nombre: "Refrigeración líquida DEEPCOOL LEE360", precio: 1076, categoria: "refrigeración", imagen: "imagenes/refrigeracion deepcool le 360.webp", stock: 8, disponible: true },
+  { nombre: "Monitor MSI MPG 314CQR 24 144Hz", precio: 1000, categoria: "monitor", imagen: "imagenes/monitor msi 24.webp", stock: 8, disponible: true },
+  { nombre: "Monitor Gamer Samsung 24 144Hz", precio: 1500, categoria: "monitor", imagen: "imagenes/monitor samsung gamer.webp", stock: 12, disponible: true },
 ];
 
 // ── 4. LOS MÉTODOS QUE IMPORTAN ─────────────────────────────────────────
@@ -207,4 +207,3 @@ class ProductoConDescuento extends Producto {
 
 const rosquete = new ProductoConDescuento("Rosquete", 1.0, 20, 25);
 console.log(rosquete.precioFinal(), rosquete.estaDisponible());
-
